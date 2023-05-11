@@ -50,6 +50,12 @@ class _SectionScreenState extends State<SectionScreen> {
                     title: Text(sectionsScreenController
                         .sectionsScreenSectionsModelList[i].title),
                     onTap: () {
+                      SectionsScreenControllerRouter sectionsScreenControllerRouter = SectionsScreenControllerRouter();
+                              sectionsScreenControllerRouter.navigateToProject(
+                                  widget.id,
+                                  sectionsScreenController
+                                      .sectionsScreenSectionsModelList[i]
+                                      .id);
                       // sectionsScreenController.navigateToProject(
                       //             widget.id,
                       //             sectionsScreenController
