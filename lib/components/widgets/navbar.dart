@@ -8,7 +8,7 @@ import 'package:secrets_website/services/screens_builder.dart';
 class NavBar {
   static List<Widget> navBarList = [
     IconButton(
-      icon: Icon(Icons.arrow_back_ios),
+      icon: Icon(Icons.home),
       onPressed: () {
         print(Get.context);
         Get.delete<SecretsScreenController>();

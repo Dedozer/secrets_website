@@ -1,3 +1,4 @@
+import 'package:adaptive_navbar/adaptive_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
@@ -38,61 +39,102 @@ class _SectionScreenState extends State<SectionScreen> {
             valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           child: Scaffold(
+            drawer: Drawer(
+              child: ListView(children: [
+                for (int i = 0;
+                    i <
+                        sectionsScreenController
+                            .sectionsScreenSectionsModelList.length;
+                    i++)
+                  ListTile(
+                    title: Text(sectionsScreenController
+                        .sectionsScreenSectionsModelList[i].title),
+                    onTap: () {
+                      ScreensBuilder.changeSection(sectionsScreenController
+                          .sectionsScreenSectionsModelList[i].id);
+
+                    Navigator.of(context).pop();
+                    },
+                  )
+              ]),
+            ),
+            // appBar: AdaptiveNavBar(
+            //   screenWidth: MediaQuery.of(context).size.width,
+            //   title: const Text("Adaptive NavBar"),
+            //   navBarItems: [
+            // for (int i = 0;
+            //     i <
+            //         sectionsScreenController
+            //             .sectionsScreenSectionsModelList.length;
+            //     i++)
+            //   NavBarItem(
+            //     text: sectionsScreenController.sectionsScreenSectionsModelList[i].title,
+            //     onTap: () {
+
+            //       ScreensBuilder.sectionsScreen(widget.id);
+            //       ScreensBuilder.changeSection(sectionsScreenController
+            //           .sectionsScreenSectionsModelList[i].id);
+
+            //     },
+            //   )
+            //   ],
+            // ),
             appBar: AppBar(
-              actions: NavBar.navBarList,
-              leading: IconBack(
-                onPressed: () {
-                  Get.delete<SectionScreenController>();
-                  Navigator.of(context).pop();
-                },
-              ),
+              // actions: NavBar.navBarList,
+              // leading: IconBack(
+              //   onPressed: () {
+              //     Get.delete<SectionScreenController>();
+              //     Navigator.of(context).pop();
+              //   },
+              // ),
             ),
             body: Row(
               children: [
-                SideNavigationBar(
-                  selectedIndex: selectedIndex,
-                  items: [
-                    for (var el in sectionsScreenController
-                        .sectionsScreenSectionsModelList)
-                      SideNavigationBarItem(
-                        icon: Icons.dashboard,
-                        label: el.title,
-                      ),
-                  ],
-                  // [
+                // SideNavigationBar(
+                //   selectedIndex: selectedIndex,
+                //   items: [
+                //     for (var el in sectionsScreenController
+                //         .sectionsScreenSectionsModelList)
+                //       SideNavigationBarItem(
+                //         icon: Icons.dashboard,
+                //         label: el.title,
+                //       ),
+                //   ],
+                //   // [
 
-                  //   SideNavigationBarItem(
-                  //     icon: Icons.dashboard,
-                  //     label: 'Dashboard',
-                  //   ),
-                  //   SideNavigationBarItem(
-                  //     icon: Icons.person,
-                  //     label: 'Account',
-                  //   ),
-                  //   SideNavigationBarItem(
-                  //     icon: Icons.settings,
-                  //     label: 'Settings',
-                  //   ),
-                  // ],
-                  onTap: (index) {
-                    setState(() {
-                      // Get.delete<SectionsScreenController>();
-                      // ScreensBuilder.sectionsScreen(widget.id);
-                      // ScreensBuilder.sectionScreen(sectionsScreenController
-                      //     .sectionsScreenSectionsModelList[index].id);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => SectionScreen(
-                      //             id: sectionsScreenController
-                      //                 .sectionsScreenSectionsModelList[index]
-                      //                 .id,
-                      //           )),
-                      // );
-                      selectedIndex = index;
-                    });
-                  },
-                ),
+                //   //   SideNavigationBarItem(
+                //   //     icon: Icons.dashboard,
+                //   //     label: 'Dashboard',
+                //   //   ),
+                //   //   SideNavigationBarItem(
+                //   //     icon: Icons.person,
+                //   //     label: 'Account',
+                //   //   ),
+                //   //   SideNavigationBarItem(
+                //   //     icon: Icons.settings,
+                //   //     label: 'Settings',
+                //   //   ),
+                //   // ],
+                //   onTap: (index) {
+                //     setState(() {
+                //       // Get.delete<SectionsScreenController>();
+                //       // ScreensBuilder.sectionsScreen(widget.id);
+                //       // ScreensBuilder.sectionScreen(sectionsScreenController
+                //       //     .sectionsScreenSectionsModelList[index].id);
+                //       // Navigator.push(
+                //       //   context,
+                //       //   MaterialPageRoute(
+                //       //       builder: (context) => SectionScreen(
+                //       //             id: sectionsScreenController
+                //       //                 .sectionsScreenSectionsModelList[index]
+                //       //                 .id,
+                //       //           )),
+                //       // );
+
+                //       selectedIndex = index;
+                //     });
+                //   },
+                // ),
 
                 /// Pretty similar to the BottomNavigationBar!
 

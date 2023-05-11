@@ -37,6 +37,19 @@ class ScreensBuilder {
     // Functions.loaderPop();
     // screensController.widget.value = SectionsScreen();
   }
+  static void sectionsUpdate(int id) async {
+    // ScreensController screensController = Get.put(ScreensController());
+    SectionsScreenController sectionsScreenController =
+        Get.find<SectionsScreenController>();
+    // Functions.loader();
+    Future<List<SectionsScreenSectionsModel>> sections = Api.getSections(id);
+    sectionsScreenController.sectionsScreenSectionsModelList = await sections;
+    sectionsScreenController.loading.value = false;
+    // Functions.loaderPop();
+    // screensController.widget.value = SectionsScreen();
+  }
+
+  
   static void sectionScreen(int id) async {
     // ScreensController screensController = Get.put(ScreensController());
     SectionScreenController sectionScreenController =
@@ -48,6 +61,20 @@ class ScreensBuilder {
     // Functions.loaderPop();
     // screensController.widget.value = SectionsScreen();
   }
+
+  static void changeSection(int id) async {
+    // ScreensController screensController = Get.put(ScreensController());
+    SectionScreenController sectionScreenController =
+        Get.find<SectionScreenController>();
+    // Functions.loader();
+    SectionModel? section = await Api.getSection(id);
+    sectionScreenController.sectionModel.value = section;
+    sectionScreenController.loading.value = false;
+    // Functions.loaderPop();
+    // screensController.widget.value = SectionsScreen();
+  }
+
+
 
   static Widget getFirstScreen() {
     secretsScreen();

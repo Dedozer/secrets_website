@@ -7,10 +7,12 @@ import 'package:secrets_website/blocks/section_screen/data/section_screen_model.
 import 'package:secrets_website/blocks/sections_screen/data/sections_screen_controller.dart';
 import 'package:secrets_website/services/screens_builder.dart';
 import 'package:secrets_website/services/screens_controller.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
   Get.put(SectionsScreenController());
   Get.put(SectionScreenController());
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
