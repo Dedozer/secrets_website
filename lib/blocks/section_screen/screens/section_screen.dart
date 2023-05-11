@@ -52,11 +52,12 @@ class _SectionScreenState extends State<SectionScreen> {
                 SideNavigationBar(
                   selectedIndex: selectedIndex,
                   items: [
-                  for(var el in sectionsScreenController.sectionsScreenSectionsModelList)
-                  SideNavigationBarItem(
-                      icon: Icons.dashboard,
-                      label: el.title,
-                    ),
+                    for (var el in sectionsScreenController
+                        .sectionsScreenSectionsModelList)
+                      SideNavigationBarItem(
+                        icon: Icons.dashboard,
+                        label: el.title,
+                      ),
                   ],
                   // [
 
@@ -75,6 +76,19 @@ class _SectionScreenState extends State<SectionScreen> {
                   // ],
                   onTap: (index) {
                     setState(() {
+                      // Get.delete<SectionsScreenController>();
+                      // ScreensBuilder.sectionsScreen(widget.id);
+                      // ScreensBuilder.sectionScreen(sectionsScreenController
+                      //     .sectionsScreenSectionsModelList[index].id);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => SectionScreen(
+                      //             id: sectionsScreenController
+                      //                 .sectionsScreenSectionsModelList[index]
+                      //                 .id,
+                      //           )),
+                      // );
                       selectedIndex = index;
                     });
                   },

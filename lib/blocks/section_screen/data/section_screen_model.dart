@@ -6,7 +6,7 @@ import 'package:secrets_website/models/section_model.dart';
 import 'package:secrets_website/services/api.dart';
 
 class SectionScreenController extends GetxController{
-  Rx<SectionModel?> sectionModel = SectionModel(id: 0, text: '').obs;
+  Rx<SectionModel?> sectionModel = SectionModel(id: 0, text: '', secretId: 0).obs;
   Rx<bool> loading = true.obs;
   // Rx<Widget> widget = CircularProgressIndicator().obs;
 }
