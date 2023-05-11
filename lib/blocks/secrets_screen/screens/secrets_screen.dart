@@ -6,6 +6,7 @@ import 'package:secrets_website/blocks/section_screen/screens/section_screen.dar
 import 'package:secrets_website/blocks/sections_screen/screens/sections_screen.dart';
 import 'package:secrets_website/components/widgets/navbar.dart';
 import 'package:secrets_website/services/api.dart';
+import 'package:secrets_website/services/navigation_service.dart';
 import 'package:secrets_website/services/screens_builder.dart';
 import 'package:secrets_website/services/screens_controller.dart';
 
@@ -25,9 +26,7 @@ class SecretsScreen extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           child: Scaffold(
-            appBar: AppBar(
-              actions: NavBar.navBarList
-            ),
+            appBar: AppBar(actions: NavBar.navBarList),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(20),
@@ -52,18 +51,18 @@ class SecretsScreen extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return TextButton(
                           onPressed: () {
-                            ScreensBuilder.sectionsScreen(
+                            secretsScreenController.navigateToProject(
                                 secretsScreenController
                                     .secretsScreenSecretModelList[index].id);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SectionsScreen(
-                                        id: secretsScreenController
-                                            .secretsScreenSecretModelList[index]
-                                            .id,
-                                      )),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => SectionsScreen(
+                            //             id: secretsScreenController
+                            //                 .secretsScreenSecretModelList[index]
+                            //                 .id,
+                            //           )),
+                            // );
                           },
                           child: Text(secretsScreenController
                               .secretsScreenSecretModelList[index].title),

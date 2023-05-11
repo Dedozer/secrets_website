@@ -60,22 +60,22 @@ class SectionsScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return TextButton(
                             onPressed: () {
-                              Get.delete<SectionsScreenController>();
-                              ScreensBuilder.sectionsScreen(id);
-                              ScreensBuilder.sectionScreen(
+                              SectionsScreenControllerRouter sectionsScreenControllerRouter = SectionsScreenControllerRouter();
+                              sectionsScreenControllerRouter.navigateToProject(
+                                  id,
                                   sectionsScreenController
                                       .sectionsScreenSectionsModelList[index]
                                       .id);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SectionScreen(
-                                          id: sectionsScreenController
-                                              .sectionsScreenSectionsModelList[
-                                                  index]
-                                              .id,
-                                        )),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => SectionScreen(
+                              //             id: sectionsScreenController
+                              //                 .sectionsScreenSectionsModelList[
+                              //                     index]
+                              //                 .id,
+                              //           )),
+                              // );
                             },
                             child: Text(sectionsScreenController
                                 .sectionsScreenSectionsModelList[index].title),

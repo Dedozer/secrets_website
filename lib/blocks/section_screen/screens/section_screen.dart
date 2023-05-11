@@ -50,10 +50,16 @@ class _SectionScreenState extends State<SectionScreen> {
                     title: Text(sectionsScreenController
                         .sectionsScreenSectionsModelList[i].title),
                     onTap: () {
-                      ScreensBuilder.changeSection(sectionsScreenController
-                          .sectionsScreenSectionsModelList[i].id);
+                      // sectionsScreenController.navigateToProject(
+                      //             widget.id,
+                      //             sectionsScreenController
+                      //                 .sectionsScreenSectionsModelList[sectionsScreenController
+                      //     .sectionsScreenSectionsModelList[i].id]
+                      //                 .id);
+                    //   ScreensBuilder.changeSection(sectionsScreenController
+                    //       .sectionsScreenSectionsModelList[i].id);
 
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
                     },
                   )
               ]),
