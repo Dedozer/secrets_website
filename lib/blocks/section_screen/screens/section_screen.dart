@@ -1,16 +1,10 @@
-import 'package:adaptive_navbar/adaptive_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:secrets_website/blocks/section_screen/data/section_screen_model.dart';
 import 'package:secrets_website/blocks/sections_screen/data/sections_screen_controller.dart';
-import 'package:secrets_website/components/widgets/icon_back.dart';
 import 'package:secrets_website/components/widgets/navbar.dart';
-import 'package:secrets_website/models/section_model.dart';
-import 'package:secrets_website/services/api.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:secrets_website/services/screens_builder.dart';
-import 'package:side_navigation/side_navigation.dart';
 
 class SectionScreen extends StatefulWidget {
   const SectionScreen({super.key, required this.id});
@@ -23,6 +17,7 @@ class SectionScreen extends StatefulWidget {
 
 class _SectionScreenState extends State<SectionScreen> {
   int selectedIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     SectionsScreenController sectionsScreenController =
@@ -39,6 +34,15 @@ class _SectionScreenState extends State<SectionScreen> {
             valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           child: Scaffold(
+            key: _scaffoldKey,
+            // appBar: MainAppBar(
+            //   // backBool: false,
+            // ),
+            appBar: MainAppBar(
+              backFlag: false,
+              drawerFlag: true,
+              globalKey: _scaffoldKey,
+            ),
             drawer: Drawer(
               child: ListView(children: [
                 for (int i = 0;
@@ -46,27 +50,50 @@ class _SectionScreenState extends State<SectionScreen> {
                         sectionsScreenController
                             .sectionsScreenSectionsModelList.length;
                     i++)
-                  ListTile(
-                    title: Text(sectionsScreenController
-                        .sectionsScreenSectionsModelList[i].title),
-                    onTap: () {
-                      SectionsScreenControllerRouter sectionsScreenControllerRouter = SectionsScreenControllerRouter();
-                              sectionsScreenControllerRouter.navigateToProject(
-                                  widget.id,
-                                  sectionsScreenController
-                                      .sectionsScreenSectionsModelList[i]
-                                      .id);
-                      // sectionsScreenController.navigateToProject(
-                      //             widget.id,
-                      //             sectionsScreenController
-                      //                 .sectionsScreenSectionsModelList[sectionsScreenController
-                      //     .sectionsScreenSectionsModelList[i].id]
-                      //                 .id);
-                    //   ScreensBuilder.changeSection(sectionsScreenController
-                    //       .sectionsScreenSectionsModelList[i].id);
+                  Column(
+                    children: [
+                      ListTile(
+                        title: Text(sectionsScreenController
+                            .sectionsScreenSectionsModelList[i].title),
+                        onTap: () {
+                          SectionsScreenControllerRouter
+                              sectionsScreenControllerRouter =
+                              SectionsScreenControllerRouter();
+                          sectionsScreenControllerRouter.navigateToProject(
+                              widget.id,
+                              sectionsScreenController
+                                  .sectionsScreenSectionsModelList[i].id);
+                          // sectionsScreenController.navigateToProject(
+                          //             widget.id,
+                          //             sectionsScreenController
+                          //                 .sectionsScreenSectionsModelList[sectionsScreenController
+                          //     .sectionsScreenSectionsModelList[i].id]
+                          //                 .id);
+                          //   ScreensBuilder.changeSection(sectionsScreenController
+                          //       .sectionsScreenSectionsModelList[i].id);
 
-                    // Navigator.of(context).pop();
-                    },
+                          // Navigator.of(context).pop();
+                        },
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      if (i !=
+                          sectionsScreenController
+                                  .sectionsScreenSectionsModelList.length -
+                              1)
+                        Column(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Divider(),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                    ],
                   )
               ]),
             ),
@@ -91,15 +118,6 @@ class _SectionScreenState extends State<SectionScreen> {
             //   )
             //   ],
             // ),
-            appBar: AppBar(
-              // actions: NavBar.navBarList,
-              // leading: IconBack(
-              //   onPressed: () {
-              //     Get.delete<SectionScreenController>();
-              //     Navigator.of(context).pop();
-              //   },
-              // ),
-            ),
             body: Row(
               children: [
                 // SideNavigationBar(

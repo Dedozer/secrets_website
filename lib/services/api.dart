@@ -7,7 +7,7 @@ import 'package:secrets_website/models/section_model.dart';
 import 'package:secrets_website/models/sections_screen_sections_model.dart';
 
 class Api {
-  static const String _apiEndpoint = 'http://192.168.1.146:80';
+  static const String _apiEndpoint = 'https://api.opoib.maxmur.info';
 
   static Future<List<SecretsScreenSecretModel>> getSecrets() async {
     var response =

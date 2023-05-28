@@ -27,61 +27,79 @@ class SectionsScreen extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           child: Scaffold(
-            appBar: AppBar(
-              actions: NavBar.navBarList,
-              leading: IconBack(
-                onPressed: () {
-                  Get.delete<SectionsScreenController>();
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
+            appBar: MainAppBar(),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Center(
-                      child: Text('sections'),
+                child: Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        GridView.builder(
+                            shrinkWrap: true,
+                            itemCount: sectionsScreenController
+                                .sectionsScreenSectionsModelList.length,
+                            primary: false,
+                            padding: const EdgeInsets.all(20),
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisSpacing:
+                                  MediaQuery.of(context).size.width / 20,
+                              mainAxisSpacing: 30,
+                              crossAxisCount: 3,
+                            ),
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  border: Border.all(
+                                    color: Colors.black87,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {
+                                    SectionsScreenControllerRouter
+                                        sectionsScreenControllerRouter =
+                                        SectionsScreenControllerRouter();
+                                    sectionsScreenControllerRouter
+                                        .navigateToProject(
+                                            id,
+                                            sectionsScreenController
+                                                .sectionsScreenSectionsModelList[
+                                                    index]
+                                                .id);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //       builder: (context) => SectionScreen(
+                                    //             id: sectionsScreenController
+                                    //                 .sectionsScreenSectionsModelList[
+                                    //                     index]
+                                    //                 .id,
+                                    //           )),
+                                    // );
+                                  },
+                                  child: Text(
+                                    sectionsScreenController
+                                        .sectionsScreenSectionsModelList[index]
+                                        .title,
+                                    softWrap: true,
+                                    overflow: TextOverflow.clip,
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                ),
+                              );
+                            }),
+                      ],
                     ),
-                    GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: sectionsScreenController
-                            .sectionsScreenSectionsModelList.length,
-                        primary: false,
-                        padding: const EdgeInsets.all(20),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 3,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return TextButton(
-                            onPressed: () {
-                              SectionsScreenControllerRouter sectionsScreenControllerRouter = SectionsScreenControllerRouter();
-                              sectionsScreenControllerRouter.navigateToProject(
-                                  id,
-                                  sectionsScreenController
-                                      .sectionsScreenSectionsModelList[index]
-                                      .id);
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => SectionScreen(
-                              //             id: sectionsScreenController
-                              //                 .sectionsScreenSectionsModelList[
-                              //                     index]
-                              //                 .id,
-                              //           )),
-                              // );
-                            },
-                            child: Text(sectionsScreenController
-                                .sectionsScreenSectionsModelList[index].title),
-                          );
-                        }),
-                  ],
+                  ),
                 ),
               ),
             ),
