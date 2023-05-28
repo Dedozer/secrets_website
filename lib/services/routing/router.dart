@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:secrets_website/blocks/info_screen/screens/info_screen.dart';
 import 'package:secrets_website/blocks/secrets_screen/screens/secrets_screen.dart';
 import 'package:secrets_website/blocks/section_screen/screens/section_screen.dart';
 import 'package:secrets_website/blocks/sections_screen/data/sections_screen_controller.dart';
@@ -32,10 +33,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (routingData.route) {
     case Routes.home:
       return _getPageRoute(SecretsScreen(), settings);
+    case Routes.info:
+      return _getPageRoute(InfoScreen(), settings);
     case Routes.sections:
       var id = int.tryParse(routingData['id']);
       ScreensBuilder.sectionsScreen(id!);
-      return _getPageRoute(SectionsScreen(id: id!), settings);
+      return _getPageRoute(SectionsScreen(id: id), settings);
     // case NewsRoute:
     //   return _getPageRoute(NewsListView(), settings);
     case Routes.section:

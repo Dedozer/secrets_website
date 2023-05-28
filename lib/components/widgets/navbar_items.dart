@@ -40,5 +40,20 @@ class NavBarItems {
         },
       ),
     ),
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: IconButton(
+        icon: const Icon(
+          Icons.info,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          Get.delete<SecretsScreenController>();
+          Get.delete<SectionScreenController>();
+          Get.delete<SectionsScreenController>();
+          locator<NavigationService>().navigateTo(Routes.info);
+        },
+      ),
+    ),
   ];
 }

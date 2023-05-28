@@ -27,6 +27,7 @@ class ScreensBuilder {
     // screensController.widget.value = SecretsScreen();
   }
   static void sectionsScreen(int id) async {
+    Get.delete<SectionsScreenController>();
     // ScreensController screensController = Get.put(ScreensController());
     SectionsScreenController sectionsScreenController =
         Get.put(SectionsScreenController());
@@ -48,9 +49,11 @@ class ScreensBuilder {
     // Functions.loaderPop();
     // screensController.widget.value = SectionsScreen();
   }
+  
 
   
   static void sectionScreen(int id) async {
+    Get.delete<SectionScreenController>();
     // ScreensController screensController = Get.put(ScreensController());
     SectionScreenController sectionScreenController =
         Get.put(SectionScreenController());

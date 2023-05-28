@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:secrets_website/blocks/info_screen/data/info_screen_controller.dart';
 import 'package:secrets_website/blocks/main_screen/main_screen.dart';
 import 'package:secrets_website/blocks/secrets_screen/data/secrets_screen_controller.dart';
 import 'package:secrets_website/blocks/secrets_screen/screens/secrets_screen.dart';
@@ -15,9 +16,10 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'services/routing/router.dart';
 
 void main() {
+  setupLocator();
   Get.put(SectionsScreenController());
   Get.put(SectionScreenController());
-  setupLocator();
+  Get.put(InfoScreenController());
   usePathUrlStrategy();
   runApp(const MyApp());
 }
