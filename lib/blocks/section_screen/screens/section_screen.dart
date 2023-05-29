@@ -7,6 +7,8 @@ import 'package:secrets_website/blocks/sections_screen/data/sections_screen_cont
 import 'package:secrets_website/components/widgets/navbar.dart';
 import 'package:secrets_website/locator.dart';
 import 'package:secrets_website/services/navigation_service.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class SectionScreen extends StatefulWidget {
   const SectionScreen({super.key, required this.id});
@@ -178,7 +180,13 @@ class _SectionScreenState extends State<SectionScreen> {
                   /// Make it take the rest of the available width
                   Expanded(
                     child: Markdown(
+                      softLineBreak: true,
+                      shrinkWrap: true,
                       data: sectionScreenController.sectionModel.value!.text,
+                      onTapLink: (text, url, title) {
+                        launchUrl(Uri.parse(
+                            url!));
+                      },
                     ),
                   )
                 ],
